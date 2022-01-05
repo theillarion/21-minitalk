@@ -6,7 +6,7 @@
 /*   By: glashli <glashli@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:36:22 by glashli           #+#    #+#             */
-/*   Updated: 2022/01/05 13:42:30 by glashli          ###   ########.fr       */
+/*   Updated: 2022/01/05 20:30:07 by glashli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ static int	ft_strncmp(const char	*str1, const char	*str2, size_t n)
 	i = 0;
 	while (i != n && (str1[i] || str2[i]))
 	{
-		if ((unsigned char)str1[i] != (unsigned char)str2[i])
-			return ((unsigned char)str1[i] - (unsigned char)str2[i]);
+		if ((t_uchar)str1[i] != (t_uchar)str2[i])
+			return ((t_uchar)str1[i] - (t_uchar)str2[i]);
 		i++;
 	}
 	return (0);
