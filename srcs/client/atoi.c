@@ -6,7 +6,7 @@
 /*   By: glashli <glashli@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:36:22 by glashli           #+#    #+#             */
-/*   Updated: 2022/01/05 13:36:23 by glashli          ###   ########.fr       */
+/*   Updated: 2022/01/05 13:42:30 by glashli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static int	ft_strncmp(const char	*str1, const char	*str2, size_t n)
 	}
 	return (0);
 }
-
 
 static int	ft_get_number(const char	*str, int sign)
 {

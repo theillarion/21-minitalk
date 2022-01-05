@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   actions.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: glashli <glashli@student.21-school.ru>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/05 13:36:45 by glashli           #+#    #+#             */
+/*   Updated: 2022/01/05 13:46:17 by glashli          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "server.h"
 
-void	ft_initial_actions(struct sigaction	*action_one, struct sigaction	*action_zero)
+void	ft_initial_actions(struct sigaction *action_one,
+			struct sigaction *action_zero)
 {
 	sigset_t	set;
 
@@ -17,7 +30,7 @@ void	ft_initial_actions(struct sigaction	*action_one, struct sigaction	*action_z
 	action_zero->sa_mask = set;
 }
 
-void	ft_error_action()
+void	ft_error_action(void)
 {
 	ft_putendl_fd("Error: invalid action.", 2);
 	exit(EXIT_FAILURE);

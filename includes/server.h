@@ -6,7 +6,7 @@
 /*   By: glashli <glashli@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:36:32 by glashli           #+#    #+#             */
-/*   Updated: 2022/01/05 13:36:32 by glashli          ###   ########.fr       */
+/*   Updated: 2022/01/05 13:41:38 by glashli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ void	ft_putendl_fd(char	*str, int fd);
 void	ft_one();
 void	ft_zero();
 void	ft_print(char bit);
-void	ft_initial_actions(struct sigaction	*action_one, struct sigaction	*action_zero);
-void	ft_error_action();
+void	ft_initial_actions(struct sigaction *action_one,
+			struct sigaction *action_zero);
+void	ft_error_action(void);
 int		main(void);
 
 #endif
