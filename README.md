@@ -1,10 +1,14 @@
 # 21-minitalk
 ## Build
-* **`make`** - *build server and client*
+* **`make`** or **`make all`** - *build server and client*
 * **`make server`** - *build server only*
 * **`make client`** - *build client only*
 * **`make clean`** - *delete object files*
 * **`make fclean`** - *delete object and executable files*
+* **`make re`** - equivalent to two consecutivaly entered commands **`make fclean`** and **`make all`**
+* **`make debug`** - *build server and client for debugging*
+* **`make server_debug`** - *build only server for debugging*
+* **`make client_debug`** - *build only client for debugging*
 ## Usage (Only UNIX system)
 1. **`./server`** - starting the server, it will listen for messages until it is killed by signals. \
 Server display your PID, which needs to be passed to the client.
