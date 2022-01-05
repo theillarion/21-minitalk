@@ -6,7 +6,7 @@
 /*   By: glashli <glashli@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:36:38 by glashli           #+#    #+#             */
-/*   Updated: 2022/01/05 18:27:26 by glashli          ###   ########.fr       */
+/*   Updated: 2022/01/05 20:33:34 by glashli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <signal.h>
+# include "shared.h"
 
-size_t	ft_strlen(const char	*str);
 int		ft_atoi(const char	*str);
-void	ft_putendl_fd(char	*str, int fd);
 void	ft_error_send_data(void);
 void	ft_send_data(pid_t pid, char	*str);
 int		main(int argc, char	**argv);
