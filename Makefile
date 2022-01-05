@@ -7,7 +7,7 @@ CC 				=	gcc
 CC_FLAGS		=	-Wall -Werror -Wextra
 SRCS_SERVER		=	${shell find srcs/server -name "*.c"}
 SRCS_CLIENT		=	${shell find srcs/client -name "*.c"}
-SRCS_COMMON		=	$(shell find srcs/shared -name "*.c")
+SRCS_SHARED		=	$(shell find srcs/shared -name "*.c")
 OBJS_SERVER		=	${SRCS_SERVER:.c=.o}
 OBJS_CLIENT		=	${SRCS_CLIENT:.c=.o}
 OBJS_SHARED		=	${SRCS_SHARED:.c=.o}
