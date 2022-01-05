@@ -12,14 +12,14 @@ Server display your PID, which needs to be passed to the client.
    * **`<PID>`** - PID's server
    * **`<message to server>`** - the message to send to the server
 ## Example 
-> Start server
-* **`./server`**
+Start server
+> **`./server`**
 
-> Output:
-* **`PID: 37396`**
+Output:
+> **`PID: 37396`**
 
-> In another terminal send a message to the server
-* **`./client 38035 "Hello, world\! "`** 
+In another terminal send a message to the server
+> **`./client 38035 "Hello, world\! "`** 
 
-> In the terminal where the server is running, the message will appear: 
-* **`Hello, world!`**
+ In the terminal where the server is running, the message will appear: 
+> **`Hello, world!`**
