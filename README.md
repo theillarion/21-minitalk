@@ -19,7 +19,7 @@ Output:
 > **`PID: 37396`**
 
 In another terminal send a message to the server
-> **`./client 38035 "Hello, world\! "`** 
+> **`./client 37396 "Hello, world\! "`** 
 
  In the terminal where the server is running, the message will appear: 
 > **`Hello, world!`**
