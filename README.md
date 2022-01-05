@@ -1,6 +1,5 @@
 # 21-minitalk
 ## Usage
-***
 * **`make`** - *build server and client*
 * **`make server`** - build server only
 * **`make client`** - build client only
