@@ -7,19 +7,16 @@
 
 typedef struct sigaction t_sigaction;
 
-pid_t pid;
-
 void ft_handler(int sig, siginfo_t * info, void * ucontext)
 {
 	(void)ucontext;
 	static unsigned char	letter;
 	static size_t			i;
 
-	pid = info->si_pid;
 	letter <<= 1;
-	if (sig == SIGUSR1)
-		letter |= 1;
-	//letter |= (sig == SIGUSR1);
+	//if (sig == SIGUSR1)
+	//	letter |= 1;
+	letter |= (sig == SIGUSR1);
 	i++;
 	if (i == 8)
 	{

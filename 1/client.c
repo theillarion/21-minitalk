@@ -8,23 +8,23 @@
 typedef struct sigaction t_sigaction;
 
 char		*str;
-pid_t		pid;
-t_sigaction act;
-t_sigaction act2;
 
-void send_data()
+void send_data(int sig, siginfo_t * info, void * ucontext)
 {
+	(void)sig;
+	(void)ucontext;
+
 	if (str && *str)
 	{
 		if (*(str++) == '1')
 		{
-			if (kill(pid, SIGUSR1) == -1)
+			if (kill(info->si_pid, SIGUSR1) == -1)
 			{
 				write(2, "Error 2", 7);
 				exit(EXIT_FAILURE);
 			}
 		}	
-		else if (kill(pid, SIGUSR2) == -1)
+		else if (kill(info->si_pid, SIGUSR2) == -1)
 		{
 			write(2, "Error 2", 7);
 			exit(EXIT_FAILURE);
@@ -74,14 +74,18 @@ char	*ggg(char	*arg)
 
 int main(int argc, char	**argv)
 {
+	t_sigaction	act;
+	t_sigaction	act2;
+	siginfo_t	info;
 	
 	if (argc == 3)
 	{
-		pid = atoi(argv[1]);
+		memset(&info, 0, sizeof(info));
+		info.si_pid = atoi(argv[1]);
 		str = ggg(argv[2]);
 		memset(&act, 0, sizeof(act));
-		act.sa_flags = 0;
-		act.sa_handler = send_data;
+		act.sa_flags = SA_SIGINFO;
+		act.sa_sigaction = send_data;
 		sigemptyset(&act.sa_mask);
 		sigaddset(&act.sa_mask, SIGUSR1);
 		if (sigaction(SIGUSR1, &act, NULL) == -1)
@@ -89,8 +93,7 @@ int main(int argc, char	**argv)
 			write(1, "Error 1", 7);
 			exit(EXIT_FAILURE);
 		}
-
-		send_data();
+		send_data(0, &info, NULL);
 		while (1)
 			pause();
 	}
