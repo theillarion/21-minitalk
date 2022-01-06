@@ -6,13 +6,13 @@
 /*   By: glashli <glashli@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 14:36:02 by glashli           #+#    #+#             */
-/*   Updated: 2022/01/06 14:42:55 by glashli          ###   ########.fr       */
+/*   Updated: 2022/01/06 22:15:23 by glashli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shared.h"
 
-void	ft_putchar_fd(char symbol, int fd)
+static void	ft_putchar_fd(char symbol, int fd)
 {
 	write(fd, &symbol, 1);
 }
@@ -39,20 +39,5 @@ void	ft_putnbr_fd(int number, int fd)
 		}
 		else
 			ft_putchar_fd(number + 48, fd);
-	}
-}
-
-void	ft_putstr_fd(char	*str, int fd)
-{
-	if (str != NULL)
-		write(fd, str, ft_strlen(str));
-}
-
-void	ft_putendl_fd(char	*str, int fd)
-{
-	if (str != NULL)
-	{
-		write(fd, str, ft_strlen(str));
-		write(fd, "\n", 1);
 	}
 }
