@@ -12,18 +12,22 @@ pid_t pid;
 void ft_handler(int sig, siginfo_t * info, void * ucontext)
 {
 	(void)ucontext;
+	static unsigned char	letter;
+	static size_t			i;
 
 	pid = info->si_pid;
+	letter <<= 1;
 	if (sig == SIGUSR1)
+		letter |= 1;
+	//letter |= (sig == SIGUSR1);
+	i++;
+	if (i == 8)
 	{
-		write(1, "1", 1);
-		kill(info->si_pid, SIGUSR1);
+		write(1, &letter, 1);
+		letter = 0;
+		i = 0;
 	}
-	else if (sig == SIGUSR2)
-	{
-		write(1, "0", 1);
-		kill(info->si_pid, SIGUSR1);
-	}
+	kill(info->si_pid, SIGUSR1);
 }
 
 int main()

@@ -37,13 +37,6 @@ void send_data()
 	}
 	
 }
-/*void handler(int signum)
-{
-	if (signum == SIGUSR1)
-	{
-		kill()
-	}
-}*/
 
 void success()
 {
@@ -51,29 +44,32 @@ void success()
 	exit(EXIT_SUCCESS);
 }
 
-void first_send()
+char	*ggg(char	*arg)
 {
-	if (str && *str)
-	{
-		if (*(str++) == '1')
-		{
-			if (kill(pid, SIGUSR1) == -1)
-			{
-				write(2, "Error 2", 7);
-				exit(EXIT_FAILURE);
-			}
-		}	
-		else if (kill(pid, SIGUSR2) == -1)
-		{
-			write(2, "Error 2", 7);
-			exit(EXIT_FAILURE);
-		}
-	}
-	else
-	{
-		write(1, "Success\n", 8);
+	char	*str;
+	int		i;
+	int 	j;
+
+	i = 0;
+	str = (char*)malloc(sizeof(char) * (strlen(arg) * 8 + 1));
+	if (str == NULL)
 		exit(EXIT_SUCCESS);
+	str[strlen(str)] = '\0';
+	while (*arg)
+	{
+		j = 128;
+		while (j)
+		{
+			if (j & *arg)
+				str[i] = '1';	
+			else
+				str[i] = '0';
+			j /= 2;
+			i++;
+		}
+		arg++;
 	}
+	return (str);
 }
 
 int main(int argc, char	**argv)
@@ -82,9 +78,7 @@ int main(int argc, char	**argv)
 	if (argc == 3)
 	{
 		pid = atoi(argv[1]);
-		str = argv[2];
-
-
+		str = ggg(argv[2]);
 		memset(&act, 0, sizeof(act));
 		act.sa_flags = 0;
 		act.sa_handler = send_data;
@@ -96,7 +90,7 @@ int main(int argc, char	**argv)
 			exit(EXIT_FAILURE);
 		}
 
-		first_send();
+		send_data();
 		while (1)
 			pause();
 	}
