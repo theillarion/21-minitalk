@@ -6,13 +6,13 @@
 /*   By: glashli <glashli@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 20:17:33 by glashli           #+#    #+#             */
-/*   Updated: 2022/01/06 20:19:17 by glashli          ###   ########.fr       */
+/*   Updated: 2022/01/06 21:45:02 by glashli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "client.h"
 
-char	*g_buff;
+extern char	*g_buff;
 
 void	ft_fill_array(char	*arg)
 {
@@ -20,10 +20,9 @@ void	ft_fill_array(char	*arg)
 	int	j;
 
 	i = 0;
-	g_buff = (char *)malloc(sizeof(char) * (ft_strlen(arg) * 8 + 1));
+	g_buff = (char *)ft_calloc(ft_strlen(arg) * 8 + 1, sizeof(char));
 	if (g_buff == NULL)
 		ft_error("Memory cannot be allocated");
-	g_buff[ft_strlen(g_buff)] = '\0';
 	while (*arg)
 	{
 		j = 128;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handler.c                                          :+:      :+:    :+:   */
+/*   fail.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glashli <glashli@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/06 20:19:34 by glashli           #+#    #+#             */
-/*   Updated: 2022/01/06 21:45:00 by glashli          ###   ########.fr       */
+/*   Created: 2022/01/06 21:37:39 by glashli           #+#    #+#             */
+/*   Updated: 2022/01/06 21:44:57 by glashli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,12 @@
 
 extern char	*g_buff;
 
-static void	ft_success(void)
+void ft_fail(char	*err)
 {
-	ft_putendl_fd("Data sent successfully", 1);
+	write(2, "Error: ", 7);
+	write(2, err, ft_strlen(err));
+	write(2, "\n", 1);
 	if (g_buff != NULL)
 		free(g_buff);
-	exit(EXIT_SUCCESS);
-}
-
-void	ft_send_bit(int sig, siginfo_t	*info, void	*ucontext)
-{
-	static size_t	i;
-
-	(void)sig;
-	(void)ucontext;
-	if (g_buff && g_buff[i])
-	{
-		if (g_buff[i++] == '1')
-		{
-			if (kill(info->si_pid, SIGUSR1) == -1)
-				ft_fail("data sending error");
-		}	
-		else if (kill(info->si_pid, SIGUSR2) == -1)
-			ft_fail("data sending error");
-	}
-	else
-		ft_success();
+	exit(EXIT_FAILURE);
 }
