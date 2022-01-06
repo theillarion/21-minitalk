@@ -1,8 +1,5 @@
 NAME_SERVER		=	server
 NAME_CLIENT		=	client
-#NAME_LIB		=	libft.a
-#NAME_LIB_SHORT	=	ft
-#PATH_LIB		=	lib/libft
 CC 				=	gcc
 CC_FLAGS		=	-Wall -Werror -Wextra
 CC_FDEBUG		=	-g
@@ -25,9 +22,6 @@ ${NAME_SERVER}			:	$(OBJS_SERVER) $(OBJS_SHARED)
 
 ${NAME_CLIENT}			:	$(OBJS_CLIENT) $(OBJS_SHARED)
 							$(CC) $(CC_FLAGS) $(OBJS_CLIENT) $(OBJS_SHARED) -o $(NAME_CLIENT)
-
-#${NAME_LIB}			:	
-#							@$(MAKE) -C $(PATH_LIB)
 
 debug					:	${NAME_SERVER}_debug ${NAME_CLIENT}_debug
 
