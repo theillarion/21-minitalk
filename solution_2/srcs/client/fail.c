@@ -6,7 +6,7 @@
 /*   By: glashli <glashli@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 21:37:39 by glashli           #+#    #+#             */
-/*   Updated: 2022/01/06 21:44:57 by glashli          ###   ########.fr       */
+/*   Updated: 2022/01/06 21:50:56 by glashli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 extern char	*g_buff;
 
-void ft_fail(char	*err)
+void	ft_fail(char	*err)
 {
 	write(2, "Error: ", 7);
 	write(2, err, ft_strlen(err));
