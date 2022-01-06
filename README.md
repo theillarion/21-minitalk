@@ -1,4 +1,9 @@
 # 21-minitalk
+## Summary
+The purpose of this project is to code a small data exchange program
+using UNIX signals. 
+## Solutions
+Implemented two solutions with different approaches to interprocessor communication with signals
 ## Build
 * **`make`** or **`make all`** - *build server and client*
 * **`make server`** - *build server only*
