@@ -6,7 +6,7 @@
 /*   By: glashli <glashli@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 20:19:34 by glashli           #+#    #+#             */
-/*   Updated: 2022/01/06 22:03:31 by glashli          ###   ########.fr       */
+/*   Updated: 2022/01/07 17:00:23 by glashli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ extern char	*g_buff;
 
 static void	ft_success(void)
 {
-	write(1, "Data sent successfully", 22);
+	write(1, "Data sent successfully\n", 23);
 	if (g_buff != NULL)
 		free(g_buff);
 	exit(EXIT_SUCCESS);
