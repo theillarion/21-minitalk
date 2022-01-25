@@ -3,7 +3,7 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/includes/**"
+                "${workspaceFolder}/includes"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
@@ -14,7 +14,8 @@
                 "-Wall",
                 "-Werror",
                 "-Wextra"
-            ]
+            ],
+            "configurationProvider": "ms-vscode.makefile-tools"
         }
     ],
     "version": 4
