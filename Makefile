@@ -1,41 +1,50 @@
 NAME_SERVER		=	server
 NAME_CLIENT		=	client
+NAME_SERVER_D	=	server_debug
+NAME_CLIENT_D	=	client_debug
 CC 				=	gcc
 CC_FLAGS		=	-Wall -Werror -Wextra
-CC_FDEBUG		=	-g
+CC_FLAGS_D		=	-g
 SRCS_SERVER		=	${shell find srcs/server -name "*.c"}
 SRCS_CLIENT		=	${shell find srcs/client -name "*.c"}
 SRCS_SHARED		=	$(shell find srcs/shared -name "*.c")
-OBJS_SERVER		=	${SRCS_SERVER:.c=.o}
-OBJS_CLIENT		=	${SRCS_CLIENT:.c=.o}
-OBJS_SHARED		=	${SRCS_SHARED:.c=.o}
+OBJS_SERVER		=	${SRCS_SERVER:%.c=%.o}
+OBJS_CLIENT		=	${SRCS_CLIENT:%.c=%.o}
+OBJS_SHARED		=	${SRCS_SHARED:%.c=%.o}
+OBJS_SERVER_D	=	${SRCS_SERVER:%.c=%_debug.o}
+OBJS_CLIENT_D	=	${SRCS_CLIENT:%.c=%_debug.o}
+OBJS_SHARED_D	=	${SRCS_SHARED:%.c=%_debug.o}
 INCLUDES		=	-I includes
 RM				=	rm -rf
 
-.c.o					:	
-							$(CC) $(CC_FLAGS) $(INCLUDES) -c $< -o $(<:.c=.o)
+%.o					:	%.c
+						$(CC) $(CC_FLAGS) ${INCLUDES} -c $< -o $@
 
-all						:	${NAME_SERVER} ${NAME_CLIENT}
+%_debug.o			:	%.c
+						$(CC) $(CC_FLAGS) ${INCLUDES} -c $< -o $@
 
-${NAME_SERVER}			:	$(OBJS_SERVER) $(OBJS_SHARED)
-							$(CC) $(CC_FLAGS) $(OBJS_SERVER) $(OBJS_SHARED) -o $(NAME_SERVER)
+all					:	${NAME_SERVER} ${NAME_CLIENT}
 
-${NAME_CLIENT}			:	$(OBJS_CLIENT) $(OBJS_SHARED)
-							$(CC) $(CC_FLAGS) $(OBJS_CLIENT) $(OBJS_SHARED) -o $(NAME_CLIENT)
+${NAME_SERVER}		:	$(OBJS_SERVER) $(OBJS_SHARED)
+						$(CC) $^ -o $(NAME_SERVER)
 
-debug					:	${NAME_SERVER}_debug ${NAME_CLIENT}_debug
+${NAME_CLIENT}		:	$(OBJS_CLIENT) $(OBJS_SHARED)
+						$(CC) $^ -o $(NAME_CLIENT)
 
-${NAME_SERVER}_debug	:	$(OBJS_SERVER) $(OBJS_SHARED)
-							$(CC) $(CC_FLAGS) $(CC_FDEBUG) $(OBJS_SERVER) $(OBJS_SHARED) -o $(NAME_SERVER)_debug
+debug				:	${NAME_SERVER_D} ${NAME_CLIENT_D}
 
-${NAME_CLIENT}_debug	:	$(OBJS_CLIENT) $(OBJS_SHARED)
-							$(CC) $(CC_FLAGS) $(CC_FDEBUG) $(OBJS_CLIENT) $(OBJS_SHARED) -o $(NAME_CLIENT)_debug
-clean					:
-							$(RM) $(OBJS_SERVER) $(OBJS_CLIENT) $(OBJS_SHARED)
+${NAME_SERVER_D}	:	$(OBJS_SERVER) $(OBJS_SHARED)
+						$(CC) $^ -o ${NAME_SERVER_D}
 
-fclean					:	clean 
-							$(RM) $(NAME_SERVER) $(NAME_CLIENT) $(NAME_SERVER)_debug $(NAME_CLIENT)_debug
+${NAME_CLIENT_D}	:	$(OBJS_CLIENT) $(OBJS_SHARED)
+						$(CC) $^ -o ${NAME_CLIENT_D}
 
-re						:	fclean all
+clean				:
+						$(RM) $(OBJS_SERVER) $(OBJS_CLIENT) $(OBJS_SHARED) $(OBJS_SERVER_D) $(OBJS_CLIENT_D) $(OBJS_SHARED_D)
 
-.PHONY					:	all clean fclean re
+fclean				:	clean 
+						$(RM) $(NAME_SERVER) $(NAME_CLIENT) $(NAME_SERVER_D) $(NAME_CLIENT_D)
+
+re					:	fclean all
+
+.PHONY				:	all debug clean fclean re
