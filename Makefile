@@ -5,9 +5,10 @@ NAME_CLIENT_D	=	client_debug
 CC 				=	gcc
 CC_FLAGS		=	-Wall -Werror -Wextra
 CC_FLAGS_D		=	-g
-SRCS_SERVER		=	${shell find srcs/server -name "*.c"}
-SRCS_CLIENT		=	${shell find srcs/client -name "*.c"}
-SRCS_SHARED		=	$(shell find srcs/shared -name "*.c")
+HEADERS			=	includes/client.h includes/server.h includes/shared.h
+SRCS_SERVER		=	srcs/server/action.c srcs/server/handler.c srcs/server/put.c srcs/server/server.c
+SRCS_CLIENT		=	srcs/client/atoi.c srcs/client/client.c srcs/client/fail.c srcs/client/handler.c srcs/client/initial.c
+SRCS_SHARED		=	srcs/shared/error.c srcs/shared/memory.c srcs/shared/strlen.c
 OBJS_SERVER		=	${SRCS_SERVER:%.c=%.o}
 OBJS_CLIENT		=	${SRCS_CLIENT:%.c=%.o}
 OBJS_SHARED		=	${SRCS_SHARED:%.c=%.o}
@@ -21,22 +22,22 @@ RM				=	rm -rf
 						$(CC) $(CC_FLAGS) ${INCLUDES} -c $< -o $@
 
 %_debug.o			:	%.c
-						$(CC) $(CC_FLAGS) ${INCLUDES} -c $< -o $@
+						$(CC) $(CC_FLAGS_D) ${INCLUDES} -c $< -o $@
 
 all					:	${NAME_SERVER} ${NAME_CLIENT}
 
-${NAME_SERVER}		:	$(OBJS_SERVER) $(OBJS_SHARED)
+${NAME_SERVER}		:	$(HEADERS) $(OBJS_SERVER) $(OBJS_SHARED)
 						$(CC) $^ -o $(NAME_SERVER)
 
-${NAME_CLIENT}		:	$(OBJS_CLIENT) $(OBJS_SHARED)
+${NAME_CLIENT}		:	$(HEADERS) $(OBJS_CLIENT) $(OBJS_SHARED)
 						$(CC) $^ -o $(NAME_CLIENT)
 
 debug				:	${NAME_SERVER_D} ${NAME_CLIENT_D}
 
-${NAME_SERVER_D}	:	$(OBJS_SERVER) $(OBJS_SHARED)
+${NAME_SERVER_D}	:	$(HEADERS) $(OBJS_SERVER) $(OBJS_SHARED)
 						$(CC) $^ -o ${NAME_SERVER_D}
 
-${NAME_CLIENT_D}	:	$(OBJS_CLIENT) $(OBJS_SHARED)
+${NAME_CLIENT_D}	:	$(HEADERS) $(OBJS_CLIENT) $(OBJS_SHARED)
 						$(CC) $^ -o ${NAME_CLIENT_D}
 
 clean				:
