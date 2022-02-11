@@ -11,3 +11,6 @@
 # Ignore files/dirs
 a.out
 trash
+check_quickly_leaks.sh
+
+*.log
